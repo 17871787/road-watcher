@@ -11,6 +11,7 @@ import logging
 from pathlib import Path
 from datetime import datetime
 from led_controller import LEDController
+from camera import create_camera
 
 # Configure logging
 logging.basicConfig(
@@ -63,23 +64,13 @@ class VehicleDetector:
 
     def start_camera(self):
         """Initialize the camera."""
-        self.camera = cv2.VideoCapture(self.config["camera_index"])
-        self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, self.config["frame_width"])
-        self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, self.config["frame_height"])
-        self.camera.set(cv2.CAP_PROP_FPS, self.config["fps"])
-
-        if not self.camera.isOpened():
-            raise RuntimeError("Failed to open camera")
-
-        logger.info("Camera started successfully")
-        # Allow camera to warm up
-        time.sleep(2)
+        self.camera = create_camera(self.config)
+        self.camera.start()
 
     def stop_camera(self):
         """Release the camera."""
         if self.camera:
             self.camera.release()
-            logger.info("Camera stopped")
 
     def detect_motion(self, frame) -> tuple:
         """

@@ -1,3 +1,10 @@
+# Core dependencies
 opencv-python>=4.8.0
 numpy>=1.24.0
+
+# Pi-specific (install via apt on Raspberry Pi OS)
+# sudo apt install python3-picamera2 python3-rpi.gpio
 RPi.GPIO>=0.7.1; platform_machine == 'armv7l' or platform_machine == 'aarch64'
+
+# Note: picamera2 should be installed via apt, not pip:
+# sudo apt install -y python3-picamera2
