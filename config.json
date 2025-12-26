@@ -1,0 +1,15 @@
+{
+  "camera_index": 0,
+  "frame_width": 640,
+  "frame_height": 480,
+  "fps": 30,
+  "led_pin": 17,
+  "min_contour_area": 5000,
+  "detection_cooldown": 2.0,
+  "alert_duration": 5.0,
+  "bg_history": 500,
+  "var_threshold": 50,
+  "roi": null,
+  "save_detections": false,
+  "detections_dir": "detections"
+}
